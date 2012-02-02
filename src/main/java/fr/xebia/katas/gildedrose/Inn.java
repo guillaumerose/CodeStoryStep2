@@ -33,38 +33,35 @@ public class Inn {
             int quality = item.getQuality();
             if (isBrie(item)) {
                 if (quality < 50) {
-                    qualityIncreaseBy(item, 1);
+                    quality += qualityIncreaseBy(item, 1);
                 }
-                quality = item.getQuality();
                 if (sellIn < 0) {
                     if (quality < 50) {
-                        qualityIncreaseBy(item, 1);
+                        quality += qualityIncreaseBy(item, 1);
                     }
                 }
             } else if (isBackstage(item)) {
                 if (quality < 50) {
-                    qualityIncreaseBy(item, 1);
+                    quality += qualityIncreaseBy(item, 1);
 
                     if (sellIn < 10) {
-                        qualityIncreaseBy(item, 1);
+                        quality += qualityIncreaseBy(item, 1);
                     }
 
                     if (sellIn < 5) {
-                        qualityIncreaseBy(item, 1);
+                        quality += qualityIncreaseBy(item, 1);
                     }
                 }
-                quality = item.getQuality();
                 if (sellIn < 0) {
-                    qualityIncreaseBy(item, -quality);
+                    quality += qualityIncreaseBy(item, -quality);
                 }
             } else {
                 if (quality > 0 && !isSulfura(item)) {
-                    qualityIncreaseBy(item, -1);
+                    quality += qualityIncreaseBy(item, -1);
                 }
-                quality = item.getQuality();
                 if (sellIn < 0) {
                     if (quality > 0 && !isSulfura(item)) {
-                        qualityIncreaseBy(item, -1);
+                        quality += qualityIncreaseBy(item, -1);
                     }
                 }
             }
@@ -72,8 +69,9 @@ public class Inn {
 
     }
 
-    private void qualityIncreaseBy(Item item, int quality) {
+    private int qualityIncreaseBy(Item item, int quality) {
         item.setQuality(item.getQuality() + quality);
+        return quality;
     }
 
     private boolean isSulfura(Item item) {
