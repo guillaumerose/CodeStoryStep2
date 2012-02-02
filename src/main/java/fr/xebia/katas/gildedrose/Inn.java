@@ -30,8 +30,9 @@ public class Inn {
                 item.setSellIn(sellIn);
             }
 
+            int quality = item.getQuality();
             if (isBrie(item) || isBackstage(item)) {
-                if (item.getQuality() < 50) {
+                if (quality < 50) {
                     qualityIncreaseBy(item, 1);
                     
                     if (isBackstage(item)) {
@@ -45,21 +46,22 @@ public class Inn {
                     }
                 }
             } else {
-                if (item.getQuality() > 0 && !isSulfura(item)) {
+                if (quality > 0 && !isSulfura(item)) {
                     qualityIncreaseBy(item, -1);
                 }
             }
 
+            quality = item.getQuality();
             if (sellIn < 0) {
                 if (isBrie(item)) {
-                    if (item.getQuality() < 50) {
+                    if (quality < 50) {
                         qualityIncreaseBy(item, 1);
                     }
                 } else {
                     if (isBackstage(item)) {
-                        qualityIncreaseBy(item, - item.getQuality());
+                        qualityIncreaseBy(item, - quality);
                     } else {
-                        if (item.getQuality() > 0 && !isSulfura(item)) {
+                        if (quality > 0 && !isSulfura(item)) {
                             qualityIncreaseBy(item, -1);
                         }
                     }
