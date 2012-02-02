@@ -35,8 +35,8 @@ public class Inn {
                 if (quality < 50) {
                     quality += qualityIncreaseBy(item, 1);
                 }
-                if (sellIn < 0) {
-                    if (quality < 50) {
+                if (quality < 50) {
+                    if (sellIn < 0) {
                         quality += qualityIncreaseBy(item, 1);
                     }
                 }
