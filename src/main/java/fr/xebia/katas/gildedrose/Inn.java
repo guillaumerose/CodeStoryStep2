@@ -18,7 +18,7 @@ public class Inn {
         items.add(new Item("+5 Dexterity Vest", 10, 20));
         items.add(new Item("Aged Brie", 2, 0));
         items.add(new Item("Elixir of the Mongoose", 5, 7));
-        items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
+        items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 50));
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
         items.add(new Item("Conjured Mana Cake", 3, 6));
     }
@@ -30,39 +30,37 @@ public class Inn {
             final int sellIn = isSulfura(item) ? item.getSellIn() : item.getSellIn() - 1;
             item.setSellIn(sellIn);
 
-            int quality = item.getQuality();
-            if (isBrie(item)) {
-                if (sellIn < 0) {
-                    quality = qualityIncreaseBy(item, 2);
-                } else {
-                    quality = qualityIncreaseBy(item, 1);
-                }
-            } else if (isBackstage(item)) {
-                if (sellIn < 0) {
-                    quality = qualityIncreaseBy(item, -quality);
-                } else if (sellIn < 5) {
-                    quality = qualityIncreaseBy(item, 3);
-                } else if (sellIn < 10) {
-                    quality = qualityIncreaseBy(item, 2);
-                } else {
-                    quality = qualityIncreaseBy(item, 1);
-                }
-            } else if (isSulfura(item)) {
-            } else {
-                if (sellIn < 0) {
-                    quality = qualityIncreaseBy(item, -2);
-                } else {
-                    quality = qualityIncreaseBy(item, -1);
-                }
-            }
+            final int quality = min(max(0, item.getQuality() + increaseOfQualityFor(item)), 50);
+            item.setQuality(quality);
         }
 
     }
 
-    private int qualityIncreaseBy(Item item, int inc) {
-        final int quality = min(max(0, item.getQuality() + inc), 50);
-        item.setQuality(quality);
-        return quality;
+    private int increaseOfQualityFor(Item item) {
+        final int sellIn = item.getSellIn();
+        final int quality = item.getQuality();
+
+        if (isBrie(item)) {
+            if (sellIn < 0) {
+                return 2;
+            }
+            return 1;
+        } else if (isBackstage(item)) {
+            if (sellIn < 0) {
+                return -quality;
+            } else if (sellIn < 5) {
+                return 3;
+            } else if (sellIn < 10) {
+                return 2;
+            }
+            return 1;
+        } else if (isSulfura(item)) {
+            return 0;
+        }
+        if (sellIn < 0) {
+            return -2;
+        }
+        return -1;
     }
 
     private boolean isSulfura(Item item) {
