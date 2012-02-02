@@ -25,10 +25,8 @@ public class Inn {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
             
-            final int sellIn = item.getSellIn() - 1;
-            if (!isSulfura(item)) {
-                item.setSellIn(sellIn);
-            }
+            final int sellIn = isSulfura(item) ? item.getSellIn() : item.getSellIn() - 1;
+            item.setSellIn(sellIn);
 
             int quality = item.getQuality();
             if (isBrie(item)) {
@@ -38,17 +36,13 @@ public class Inn {
                 }
             } else if (isBackstage(item)) {
                 quality = qualityIncreaseBy(item, 1);
-
-                if (sellIn < 5) {
-                    quality = qualityIncreaseBy(item, 1);
-                }
-
-                if (sellIn < 10) {
-                    quality = qualityIncreaseBy(item, 1);
-                }
                 
                 if (sellIn < 0) {
                     quality = qualityIncreaseBy(item, -quality);
+                } else if (sellIn < 5) {
+                    quality = qualityIncreaseBy(item, 2);
+                } else if (sellIn < 10) {
+                    quality = qualityIncreaseBy(item, 1);
                 }
             } else if (isSulfura(item)) {
             } else {
