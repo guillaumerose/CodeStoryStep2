@@ -32,38 +32,29 @@ public class Inn {
 
             int quality = item.getQuality();
             if (isBrie(item)) {
-                if (quality < 50) {
-                    quality += qualityIncreaseBy(item, 1);
-                }
-                if (quality < 50) {
-                    if (sellIn < 0) {
-                        quality += qualityIncreaseBy(item, 1);
-                    }
+                quality = qualityIncreaseBy(item, 1);
+                if (sellIn < 0) {
+                    quality = qualityIncreaseBy(item, 1);
                 }
             } else if (isBackstage(item)) {
-                if (quality < 50) {
-                    quality += qualityIncreaseBy(item, 1);
-                    
-                    if (sellIn < 5) {
-                        quality += qualityIncreaseBy(item, 1);
-                    }
+                quality = qualityIncreaseBy(item, 1);
 
-                    if (sellIn < 10) {
-                        quality += qualityIncreaseBy(item, 1);
-                    }
+                if (sellIn < 5) {
+                    quality = qualityIncreaseBy(item, 1);
                 }
+
+                if (sellIn < 10) {
+                    quality = qualityIncreaseBy(item, 1);
+                }
+                
                 if (sellIn < 0) {
-                    quality += qualityIncreaseBy(item, -quality);
+                    quality = qualityIncreaseBy(item, -quality);
                 }
             } else if (isSulfura(item)) {
             } else {
-                if (quality > 0) {
-                    quality += qualityIncreaseBy(item, -1);
-                }
-                if (quality > 0) {
-                    if (sellIn < 0) {
-                        quality += qualityIncreaseBy(item, -1);
-                    }
+                quality = qualityIncreaseBy(item, -1);
+                if (sellIn < 0) {
+                    quality = qualityIncreaseBy(item, -1);
                 }
             }
         }
@@ -71,8 +62,11 @@ public class Inn {
     }
 
     private int qualityIncreaseBy(Item item, int inc) {
-        item.setQuality(item.getQuality() + inc);
-        return inc;
+        final int askedQuality = item.getQuality() + inc;
+        if (askedQuality >= 0 && askedQuality <= 50) {
+            item.setQuality(askedQuality);
+        }
+        return item.getQuality();
     }
 
     private boolean isSulfura(Item item) {
