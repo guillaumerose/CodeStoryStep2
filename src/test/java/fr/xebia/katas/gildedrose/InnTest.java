@@ -10,10 +10,10 @@ public class InnTest {
     public void should_not_loose_a_rule() throws Exception {
         String toCompare[] = {
                 "+5 Dexterity Vest: (10, 20); Aged Brie: (2, 0); Elixir of the Mongoose: (5, 7); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (15, 20); Conjured Mana Cake: (3, 6)",
-                "+5 Dexterity Vest: (9, 19); Aged Brie: (1, 1); Elixir of the Mongoose: (4, 6); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (14, 21); Conjured Mana Cake: (2, 5)",
-                "+5 Dexterity Vest: (8, 18); Aged Brie: (0, 2); Elixir of the Mongoose: (3, 5); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (13, 22); Conjured Mana Cake: (1, 4)",
-                "+5 Dexterity Vest: (7, 17); Aged Brie: (-1, 4); Elixir of the Mongoose: (2, 4); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (12, 23); Conjured Mana Cake: (0, 3)",
-                "+5 Dexterity Vest: (6, 16); Aged Brie: (-2, 6); Elixir of the Mongoose: (1, 3); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (11, 24); Conjured Mana Cake: (-1, 1)",
+                "+5 Dexterity Vest: (9, 19); Aged Brie: (1, 1); Elixir of the Mongoose: (4, 6); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (14, 21); Conjured Mana Cake: (2, 4)",
+                "+5 Dexterity Vest: (8, 18); Aged Brie: (0, 2); Elixir of the Mongoose: (3, 5); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (13, 22); Conjured Mana Cake: (1, 2)",
+                "+5 Dexterity Vest: (7, 17); Aged Brie: (-1, 4); Elixir of the Mongoose: (2, 4); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (12, 23); Conjured Mana Cake: (0, 0)",
+                "+5 Dexterity Vest: (6, 16); Aged Brie: (-2, 6); Elixir of the Mongoose: (1, 3); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (11, 24); Conjured Mana Cake: (-1, 0)",
                 "+5 Dexterity Vest: (5, 15); Aged Brie: (-3, 8); Elixir of the Mongoose: (0, 2); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (10, 25); Conjured Mana Cake: (-2, 0)",
                 "+5 Dexterity Vest: (4, 14); Aged Brie: (-4, 10); Elixir of the Mongoose: (-1, 0); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (9, 27); Conjured Mana Cake: (-3, 0)",
                 "+5 Dexterity Vest: (3, 13); Aged Brie: (-5, 12); Elixir of the Mongoose: (-2, 0); Sulfuras, Hand of Ragnaros: (0, 50); Backstage passes to a TAFKAL80ETC concert: (8, 29); Conjured Mana Cake: (-4, 0)",

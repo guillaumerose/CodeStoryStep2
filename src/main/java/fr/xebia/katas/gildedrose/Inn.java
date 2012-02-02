@@ -30,10 +30,16 @@ public class Inn {
             final int sellIn = isSulfura(item) ? item.getSellIn() : item.getSellIn() - 1;
             item.setSellIn(sellIn);
 
-            final int quality = min(max(0, item.getQuality() + increaseOfQualityFor(item)), 50);
+            final int quality = min(max(0, 
+                                        item.getQuality() + conjuredFactor(item) * increaseOfQualityFor(item)), 
+                                    50);
             item.setQuality(quality);
         }
 
+    }
+
+    private int conjuredFactor(Item item) {
+        return isConjured(item) ? 2 : 1;
     }
 
     private int increaseOfQualityFor(Item item) {
@@ -61,6 +67,10 @@ public class Inn {
             return -2;
         }
         return -1;
+    }
+
+    private boolean isConjured(Item item) {
+        return item.getName().startsWith("Conjured");
     }
 
     private boolean isSulfura(Item item) {
