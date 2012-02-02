@@ -53,15 +53,21 @@ public class Inn {
                 }
             }
 
-            quality = item.getQuality();
-            if (sellIn < 0) {
-                if (isBrie(item)) {
+            if (isBrie(item)) {
+                quality = item.getQuality();
+                if (sellIn < 0) {
                     if (quality < 50) {
                         qualityIncreaseBy(item, 1);
                     }
-                } else if (isBackstage(item)) {
+                }
+            } else if (isBackstage(item)) {
+                quality = item.getQuality();
+                if (sellIn < 0) {
                     qualityIncreaseBy(item, -quality);
-                } else {
+                }
+            } else {
+                quality = item.getQuality();
+                if (sellIn < 0) {
                     if (quality > 0 && !isSulfura(item)) {
                         qualityIncreaseBy(item, -1);
                     }
