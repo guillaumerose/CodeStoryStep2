@@ -35,6 +35,12 @@ public class Inn {
                 if (quality < 50) {
                     qualityIncreaseBy(item, 1);
                 }
+                quality = item.getQuality();
+                if (sellIn < 0) {
+                    if (quality < 50) {
+                        qualityIncreaseBy(item, 1);
+                    }
+                }
             } else if (isBackstage(item)) {
                 if (quality < 50) {
                     qualityIncreaseBy(item, 1);
@@ -47,25 +53,14 @@ public class Inn {
                         qualityIncreaseBy(item, 1);
                     }
                 }
-            } else {
-                if (quality > 0 && !isSulfura(item)) {
-                    qualityIncreaseBy(item, -1);
-                }
-            }
-
-            if (isBrie(item)) {
-                quality = item.getQuality();
-                if (sellIn < 0) {
-                    if (quality < 50) {
-                        qualityIncreaseBy(item, 1);
-                    }
-                }
-            } else if (isBackstage(item)) {
                 quality = item.getQuality();
                 if (sellIn < 0) {
                     qualityIncreaseBy(item, -quality);
                 }
             } else {
+                if (quality > 0 && !isSulfura(item)) {
+                    qualityIncreaseBy(item, -1);
+                }
                 quality = item.getQuality();
                 if (sellIn < 0) {
                     if (quality > 0 && !isSulfura(item)) {
