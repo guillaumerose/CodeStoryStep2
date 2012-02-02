@@ -36,15 +36,11 @@ public class Inn {
 
                     if (isBackstage(item)) {
                         if (item.getSellIn() < 11) {
-                            if (item.getQuality() < 50) {
-                                item.setQuality(item.getQuality() + 1);
-                            }
+                            item.setQuality(item.getQuality() + 1);
                         }
 
                         if (item.getSellIn() < 6) {
-                            if (item.getQuality() < 50) {
-                                item.setQuality(item.getQuality() + 1);
-                            }
+                            item.setQuality(item.getQuality() + 1);
                         }
                     }
                 }
@@ -63,7 +59,7 @@ public class Inn {
                             }
                         }
                     } else {
-                        item.setQuality(item.getQuality() - item.getQuality());
+                        item.setQuality(0);
                     }
                 } else {
                     if (item.getQuality() < 50) {
