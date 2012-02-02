@@ -26,21 +26,21 @@ public class Inn {
             Item item = items.get(i);
             if (isBrie(item) || isBackstage(item)) {
                 if (item.getQuality() < 50) {
-                    item.setQuality(item.getQuality() + 1);
+                    qualityIncreaseBy(item, 1);
                     
                     if (isBackstage(item)) {
                         if (item.getSellIn() < 11) {
-                            item.setQuality(item.getQuality() + 1);
+                            qualityIncreaseBy(item, 1);
                         }
                         
                         if (item.getSellIn() < 6) {
-                            item.setQuality(item.getQuality() + 1);
+                            qualityIncreaseBy(item, 1);
                         }
                     }
                 }
             } else {
                 if (item.getQuality() > 0 && !isSulfura(item)) {
-                    item.setQuality(item.getQuality() - 1);
+                    qualityIncreaseBy(item, -1);
                 }
             }
 
@@ -51,20 +51,24 @@ public class Inn {
             if (item.getSellIn() < 0) {
                 if (isBrie(item)) {
                     if (item.getQuality() < 50) {
-                        item.setQuality(item.getQuality() + 1);
+                        qualityIncreaseBy(item, 1);
                     }
                 } else {
                     if (isBackstage(item)) {
-                        item.setQuality(0);
+                        qualityIncreaseBy(item, - item.getQuality());
                     } else {
                         if (item.getQuality() > 0 && !isSulfura(item)) {
-                            item.setQuality(item.getQuality() - 1);
+                            qualityIncreaseBy(item, -1);
                         }
                     }
                 }
             }
         }
 
+    }
+
+    private void qualityIncreaseBy(Item item, int quality) {
+        item.setQuality(item.getQuality() + quality);
     }
 
     private boolean isSulfura(Item item) {
