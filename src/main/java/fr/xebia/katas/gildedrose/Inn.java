@@ -24,23 +24,23 @@ public class Inn {
     public void updateQuality() {
         for (int i = 0; i < items.size(); i++) {
             Item item = items.get(i);
-            if (!isBrie(item) && !isBackstage(item)) {
-                if (item.getQuality() > 0 && !isSulfura(item)) {
-                    item.setQuality(item.getQuality() - 1);
-                }
-            } else {
+            if (isBrie(item) || isBackstage(item)) {
                 if (item.getQuality() < 50) {
                     item.setQuality(item.getQuality() + 1);
-
+                    
                     if (isBackstage(item)) {
                         if (item.getSellIn() < 11) {
                             item.setQuality(item.getQuality() + 1);
                         }
-
+                        
                         if (item.getSellIn() < 6) {
                             item.setQuality(item.getQuality() + 1);
                         }
                     }
+                }
+            } else {
+                if (item.getQuality() > 0 && !isSulfura(item)) {
+                    item.setQuality(item.getQuality() - 1);
                 }
             }
 
@@ -49,17 +49,17 @@ public class Inn {
             }
 
             if (item.getSellIn() < 0) {
-                if (!isBrie(item)) {
-                    if (!isBackstage(item)) {
+                if (isBrie(item)) {
+                    if (item.getQuality() < 50) {
+                        item.setQuality(item.getQuality() + 1);
+                    }
+                } else {
+                    if (isBackstage(item)) {
+                        item.setQuality(0);
+                    } else {
                         if (item.getQuality() > 0 && !isSulfura(item)) {
                             item.setQuality(item.getQuality() - 1);
                         }
-                    } else {
-                        item.setQuality(0);
-                    }
-                } else {
-                    if (item.getQuality() < 50) {
-                        item.setQuality(item.getQuality() + 1);
                     }
                 }
             }
