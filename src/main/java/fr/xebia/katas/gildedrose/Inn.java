@@ -55,12 +55,13 @@ public class Inn {
                 if (sellIn < 0) {
                     quality += qualityIncreaseBy(item, -quality);
                 }
+            } else if (isSulfura(item)) {
             } else {
-                if (quality > 0 && !isSulfura(item)) {
+                if (quality > 0) {
                     quality += qualityIncreaseBy(item, -1);
                 }
-                if (sellIn < 0) {
-                    if (quality > 0 && !isSulfura(item)) {
+                if (quality > 0) {
+                    if (sellIn < 0) {
                         quality += qualityIncreaseBy(item, -1);
                     }
                 }
