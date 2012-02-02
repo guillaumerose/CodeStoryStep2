@@ -1,6 +1,8 @@
 package fr.xebia.katas.gildedrose;
 
 import static com.google.common.collect.Lists.transform;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +32,26 @@ public class Inn {
 
             int quality = item.getQuality();
             if (isBrie(item)) {
-                quality = qualityIncreaseBy(item, 1);
                 if (sellIn < 0) {
+                    quality = qualityIncreaseBy(item, 2);
+                } else {
                     quality = qualityIncreaseBy(item, 1);
                 }
             } else if (isBackstage(item)) {
-                quality = qualityIncreaseBy(item, 1);
-                
                 if (sellIn < 0) {
                     quality = qualityIncreaseBy(item, -quality);
                 } else if (sellIn < 5) {
-                    quality = qualityIncreaseBy(item, 2);
+                    quality = qualityIncreaseBy(item, 3);
                 } else if (sellIn < 10) {
+                    quality = qualityIncreaseBy(item, 2);
+                } else {
                     quality = qualityIncreaseBy(item, 1);
                 }
             } else if (isSulfura(item)) {
             } else {
-                quality = qualityIncreaseBy(item, -1);
                 if (sellIn < 0) {
+                    quality = qualityIncreaseBy(item, -2);
+                } else {
                     quality = qualityIncreaseBy(item, -1);
                 }
             }
@@ -56,11 +60,9 @@ public class Inn {
     }
 
     private int qualityIncreaseBy(Item item, int inc) {
-        final int askedQuality = item.getQuality() + inc;
-        if (askedQuality >= 0 && askedQuality <= 50) {
-            item.setQuality(askedQuality);
-        }
-        return item.getQuality();
+        final int quality = min(max(0, item.getQuality() + inc), 50);
+        item.setQuality(quality);
+        return quality;
     }
 
     private boolean isSulfura(Item item) {
