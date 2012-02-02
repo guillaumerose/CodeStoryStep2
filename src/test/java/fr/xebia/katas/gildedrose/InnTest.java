@@ -72,7 +72,7 @@ public class InnTest {
 
         Inn inn = new Inn();
         for (int i = 0; i < toCompare.length; i++) {
-            assertThat(toCompare[i]).isEqualTo(Inn.itemsAsString(inn));
+            assertThat(toCompare[i]).isEqualTo(inn.itemsAsString());
             inn.updateQuality();
         }
     }

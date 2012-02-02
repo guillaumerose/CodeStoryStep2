@@ -38,14 +38,10 @@ public class Inn {
 
     }
 
-    private int conjuredFactor(Item item) {
-        return isConjured(item) ? 2 : 1;
-    }
-
     private int increaseOfQualityFor(Item item) {
         final int sellIn = item.getSellIn();
         final int quality = item.getQuality();
-
+    
         if (isBrie(item)) {
             if (sellIn < 0) {
                 return 2;
@@ -69,6 +65,10 @@ public class Inn {
         return -1;
     }
 
+    private int conjuredFactor(Item item) {
+        return isConjured(item) ? 2 : 1;
+    }
+
     private boolean isConjured(Item item) {
         return item.getName().startsWith("Conjured");
     }
@@ -87,17 +87,14 @@ public class Inn {
 
     public static void main(String[] args) {
         Inn inn = new Inn();
-        for (int i = 0; i < 60; i++) {
-            System.out.println(itemsAsString(inn));
-            inn.updateQuality();
-        }
+        inn.updateQuality();
     }
 
-    public static String itemsAsString(Inn inn) {
-        return Joiner.on("; ").join(transform(inn.items, TO_STRING));
+    public String itemsAsString() {
+        return Joiner.on("; ").join(transform(items, TO_STRING));
     }
 
-    public static Function<Item, String> TO_STRING = new Function<Item, String>() {
+    private static Function<Item, String> TO_STRING = new Function<Item, String>() {
         @Override
         public String apply(Item item) {
             return item.getName() + ": (" + item.getSellIn() + ", " + item.getQuality() + ")";
