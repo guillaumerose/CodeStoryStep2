@@ -70,9 +70,9 @@ public class Inn {
 
     }
 
-    private int qualityIncreaseBy(Item item, int quality) {
-        item.setQuality(item.getQuality() + quality);
-        return quality;
+    private int qualityIncreaseBy(Item item, int inc) {
+        item.setQuality(item.getQuality() + inc);
+        return inc;
     }
 
     private boolean isSulfura(Item item) {
