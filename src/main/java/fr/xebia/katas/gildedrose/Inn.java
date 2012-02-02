@@ -43,12 +43,12 @@ public class Inn {
             } else if (isBackstage(item)) {
                 if (quality < 50) {
                     quality += qualityIncreaseBy(item, 1);
-
-                    if (sellIn < 10) {
+                    
+                    if (sellIn < 5) {
                         quality += qualityIncreaseBy(item, 1);
                     }
 
-                    if (sellIn < 5) {
+                    if (sellIn < 10) {
                         quality += qualityIncreaseBy(item, 1);
                     }
                 }
